@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Tic-Tac-Toe</title>
+    <title>Cloud Tic-Tac-Toe - Aditya Ahuja</title>
     
     <style>
         body { 
@@ -22,11 +22,28 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            /* Added min-width to accommodate the details */
+            min-width: 400px; 
         }
         h1 { 
             color: #61dafb; 
             margin-top: 0;
+            margin-bottom: 10px; /* Reduced space after title */
         }
+        /* New Style for Details Section */
+        .details-box {
+            background-color: #3a3f47;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 0.9em;
+            border-left: 5px solid #e63946; /* Primary color accent */
+        }
+        .details-box p {
+            margin: 3px 0;
+        }
+        /* End of new styles */
         .board { 
             display: grid; 
             grid-template-columns: repeat(3, 100px); 
@@ -51,6 +68,7 @@
         #status { 
             font-size: 1.2em; 
             margin-bottom: 15px; 
+            color: #61dafb; /* Changed status text color for visibility */
         }
         #reset-button { 
             padding: 10px 20px; 
@@ -69,7 +87,14 @@
 </head>
 <body>
     <div class="game-container">
-        <h1>Cloud Tic-Tac-Toe</h1>
+        <h1>GitHub Tic-Tac-Toe</h1>
+        
+        <div class="details-box">
+            <p><strong>Activity:</strong> GitHub Pages Project</p>
+            <p><strong>Subject:</strong> Gaming in Cloud</p>
+            <p><strong>Name:</strong> Aditya Ahuja</p>
+            <p><strong>Regn No:</strong> 23BCG10109</p>
+        </div>
         <div id="status">Player X's Turn</div>
         <div class="board" id="board">
             <div class="cell" data-index="0"></div>
@@ -152,13 +177,4 @@
         function handleRestartGame() {
             gameActive = true;
             currentPlayer = "X";
-            gameBoard = ["", "", "", "", "", "", "", "", ""];
-            statusDisplay.innerHTML = `Player ${currentPlayer}'s Turn`;
-            cells.forEach(cell => cell.innerHTML = "");
-        }
-
-        cells.forEach(cell => cell.addEventListener('click', handleCellClick));
-        resetButton.addEventListener('click', handleRestartGame);
-    </script>
-</body>
-</html>
+            gameBoard = ["", "", "", "", "", "", "", "",
