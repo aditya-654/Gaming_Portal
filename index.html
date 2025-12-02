@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PixelForge Gaming Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@600&display=swap" rel="stylesheet">
+    
     <style>
         /* Base Styles */
         :root {
@@ -15,9 +17,6 @@
             --font-heading: 'Oswald', sans-serif;
             --font-body: 'Roboto', sans-serif;
         }
-
-        /* Importing Google Fonts (Requires an internet connection) */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@600&display=swap');
 
         body {
             font-family: var(--font-body);
@@ -134,18 +133,17 @@
             padding: 60px 5%;
         }
 
-        /* Hero Section Specifics */
+        /* Hero Section Specifics - Setting a fixed height and background image */
         .hero-section {
-            /* Placeholder for background image. Replace 'https://via.placeholder.com/1920x800' with your actual image URL */
+            /* Using a simple placeholder image URL for guaranteed visibility */
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800/101010/808080?text=EPIC+GAME+BACKGROUND') no-repeat center center;
             background-size: cover;
-            height: 70vh;
+            height: 70vh; /* This makes the section visible */
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
         }
-        
 
         .hero-content h1 {
             font-size: 3.5rem;
@@ -274,4 +272,30 @@
         <div class="logo">PixelForge</div>
         <nav class="main-nav">
             <ul>
-                <li><a href="#home
+                <li><a href="#home">Home</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#login" class="cta-button">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <h1>Forge Your Legend. Join PixelForge.</h1>
+                <p>The ultimate hub for competitive news, reviews, and exclusive game content.</p>
+                <a href="https://cloud-tic-tac-toe-YOUR-ID.vercel.app/" target="_blank" class="btn-primary">Play Our Featured Game!</a>
+            </div>
+        </section>
+
+        <section class="featured-games" id="games">
+            <h2>🔥 Featured Games</h2>
+            <div class="game-cards">
+                <div class="card">
+                    <h3>Cloud Tic-Tac-Toe</h3>
+                    <p>The classic paper-and-pencil game, cloud-hosted for instant play.</p>
+                    <a href="https://cloud-tic-tac-toe-YOUR-ID.vercel.app/" target="_blank" class="btn-secondary">Play Now!</a>
+                </div>
+                <div class="card">
