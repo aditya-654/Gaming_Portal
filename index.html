@@ -1,150 +1,164 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Game WebPage</title>
-
-  <style>
-    :root{
-      --bg-1: #071026;
-      --bg-2: #0f1724;
-      --card: rgba(255,255,255,0.04);
-      --accent: #6c63ff;
-      --accent-2: #ff6b6b;
-      --muted: #bfc0d6;
-      --glass: rgba(255,255,255,0.03);
-      --radius: 14px;
-      --maxw: 1100px;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(108,99,255,0.08), transparent 8%),
-                  linear-gradient(180deg,var(--bg-1), var(--bg-2));
-      color:#e9f0ff;
-      padding:36px 20px;
-      display:flex;
-      justify-content:center;
-    }
-    .wrap{
-      width:100%;
-      max-width:var(--maxw);
-    }
-
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .brand{
-      display:flex;
-      gap:14px;
-      align-items:center;
-    }
-    .logo{
-      width:56px;height:56px;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-2));
-      display:flex;align-items:center;justify-content:center;
-      font-weight:800;font-family:monospace;color:white;
-    }
-
-    nav{display:flex;gap:12px}
-    nav a{
-      padding:8px 14px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:600;
-      color:var(--muted);
-    }
-    nav a.primary{
-      background:var(--accent);
-      color:white;
-    }
-
-    .info-bar{
-      background: rgba(255,255,255,0.05);
-      padding: 14px 20px;
-      margin: 18px 0 30px 0;
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-      border:1px solid rgba(255,255,255,0.06);
-      font-size:14px;
-    }
-
-    .card{
-      background:var(--glass);
-      padding:22px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,0.05);
-      box-shadow:0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    .btn{
-      display:inline-block;
-      margin-top:14px;
-      padding:10px 16px;
-      background:var(--accent);
-      color:white;
-      font-weight:700;
-      border-radius:10px;
-      text-decoration:none;
-    }
-
-    footer{
-      margin-top:40px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Tic-Tac-Toe</title>
+    
+    <style>
+        body { 
+            font-family: sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            background-color: #282c34; 
+            color: white; 
+            margin: 0;
+        }
+        .game-container { 
+            text-align: center; 
+            background-color: #1c1f24;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        h1 { 
+            color: #61dafb; 
+            margin-top: 0;
+        }
+        .board { 
+            display: grid; 
+            grid-template-columns: repeat(3, 100px); 
+            grid-template-rows: repeat(3, 100px); 
+            gap: 5px; 
+            margin: 20px auto; 
+        }
+        .cell { 
+            background-color: #444; 
+            border: 2px solid #61dafb; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 40px; 
+            cursor: pointer; 
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+        .cell:hover { 
+            background-color: #555; 
+        }
+        #status { 
+            font-size: 1.2em; 
+            margin-bottom: 15px; 
+        }
+        #reset-button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            background-color: #e63946; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #reset-button:hover { 
+            background-color: #ff6b7b; 
+        }
+    </style>
 </head>
-
 <body>
-  <div class="wrap">
-
-    <!-- HEADER -->
-    <header>
-      <div class="brand">
-        <div class="logo">PF</div>
-        <div>
-          <div style="font-weight:700;font-size:20px">Activity 1</div>
-          <div style="font-size:12px;color:var(--muted)">Tanishq Pandey | 23BCG10062</div>
+    <div class="game-container">
+        <h1>Cloud Tic-Tac-Toe</h1>
+        <div id="status">Player X's Turn</div>
+        <div class="board" id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
         </div>
-      </div>
-
-    </header>
-
-    <!-- STUDENT DETAILS -->
-    <div class="info-bar">
-      <strong>Student Name:</strong> Tanishq Pandey &nbsp; | &nbsp;
-      <strong>Reg No:</strong> 23BCG10062 &nbsp; | &nbsp;
-      <strong>Faculty:</strong> Dr. Vijay Birccha &nbsp; | &nbsp;
-      <strong>Subject:</strong> Gaming In Cloud &nbsp; | &nbsp;
-      <strong>Email:</strong> tanishq.23bcg10062@vitbhopal.ac.in
+        <button id="reset-button">Reset Game</button>
     </div>
+    
+    <script>
+        const board = document.getElementById('board');
+        const statusDisplay = document.getElementById('status');
+        const resetButton = document.getElementById('reset-button');
+        const cells = document.querySelectorAll('.cell');
 
-    <!-- MAIN FEATURED GAME -->
-    <section id="featured">
-      <div class="card">
-        <h2 style="margin-top:0">Game</h2>
-        <p style="color:var(--muted)">Ball Bounce Game</p>
-        <a class="btn" href="games/ball-bounce/">Play</a>
-      </div>
-    </section>
+        let gameBoard = ["", "", "", "", "", "", "", "", ""];
+        let currentPlayer = "X";
+        let gameActive = true;
 
-    <!-- FOOTER -->
-    <footer>
-      © <span id="year"></span> Made By Tanishq Pandey
-    </footer>
+        const winningConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+            [0, 4, 8], [2, 4, 6]             // Diagonals
+        ];
 
-  </div>
+        function handleResultValidation() {
+            let roundWon = false;
+            for (let i = 0; i < winningConditions.length; i++) {
+                const winCondition = winningConditions[i];
+                let a = gameBoard[winCondition[0]];
+                let b = gameBoard[winCondition[1]];
+                let c = gameBoard[winCondition[2]];
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+                if (a === '' || b === '' || c === '') {
+                    continue;
+                }
+                if (a === b && b === c) {
+                    roundWon = true;
+                    break;
+                }
+            }
 
+            if (roundWon) {
+                statusDisplay.innerHTML = `Player ${currentPlayer} Wins! 🎉`;
+                gameActive = false;
+                return;
+            }
+
+            if (!gameBoard.includes("")) {
+                statusDisplay.innerHTML = `It's a Draw! 🤝`;
+                gameActive = false;
+                return;
+            }
+
+            // Continue game
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            statusDisplay.innerHTML = `Player ${currentPlayer}'s Turn`;
+        }
+
+        function handleCellClick(clickedCellEvent) {
+            const clickedCell = clickedCellEvent.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
+
+            if (gameBoard[clickedCellIndex] !== "" || !gameActive) {
+                return;
+            }
+
+            gameBoard[clickedCellIndex] = currentPlayer;
+            clickedCell.innerHTML = currentPlayer;
+
+            handleResultValidation();
+        }
+
+        function handleRestartGame() {
+            gameActive = true;
+            currentPlayer = "X";
+            gameBoard = ["", "", "", "", "", "", "", "", ""];
+            statusDisplay.innerHTML = `Player ${currentPlayer}'s Turn`;
+            cells.forEach(cell => cell.innerHTML = "");
+        }
+
+        cells.forEach(cell => cell.addEventListener('click', handleCellClick));
+        resetButton.addEventListener('click', handleRestartGame);
+    </script>
 </body>
 </html>
