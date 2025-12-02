@@ -1,301 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelForge Gaming Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Styles */
-        :root {
-            --primary-color: #e63946; /* Vibrant Red/Pink for accents */
-            --secondary-color: #457b9d; /* Deep Blue for secondary elements */
-            --background-dark: #1a1a1a;
-            --text-light: #f1faee;
-            --card-background: #2a2a2a;
-            --font-heading: 'Oswald', sans-serif;
-            --font-body: 'Roboto', sans-serif;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Game WebPage</title>
 
-        body {
-            font-family: var(--font-body);
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+  <style>
+    :root{
+      --bg-1: #071026;
+      --bg-2: #0f1724;
+      --card: rgba(255,255,255,0.04);
+      --accent: #6c63ff;
+      --accent-2: #ff6b6b;
+      --muted: #bfc0d6;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 14px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(108,99,255,0.08), transparent 8%),
+                  linear-gradient(180deg,var(--bg-1), var(--bg-2));
+      color:#e9f0ff;
+      padding:36px 20px;
+      display:flex;
+      justify-content:center;
+    }
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+    }
 
-        h1, h2, h3 {
-            font-family: var(--font-heading);
-            color: var(--primary-color);
-        }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;font-family:monospace;color:white;
+    }
 
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+    nav{display:flex;gap:12px}
+    nav a{
+      padding:8px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      color:var(--muted);
+    }
+    nav a.primary{
+      background:var(--accent);
+      color:white;
+    }
 
-        a:hover {
-            color: #ff6b7b; /* Lighter red on hover */
-        }
+    .info-bar{
+      background: rgba(255,255,255,0.05);
+      padding: 14px 20px;
+      margin: 18px 0 30px 0;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      border:1px solid rgba(255,255,255,0.06);
+      font-size:14px;
+    }
 
-        /* --- Header & Navigation --- */
-        .main-header {
-            background-color: #0d0d0d;
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
+    .card{
+      background:var(--glass);
+      padding:22px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.05);
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-family: var(--font-heading);
-            color: var(--text-light);
-            letter-spacing: 2px;
-        }
+    .btn{
+      display:inline-block;
+      margin-top:14px;
+      padding:10px 16px;
+      background:var(--accent);
+      color:white;
+      font-weight:700;
+      border-radius:10px;
+      text-decoration:none;
+    }
 
-        .main-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-        }
-
-        .main-nav li {
-            margin-left: 20px;
-        }
-
-        .main-nav a {
-            color: var(--text-light);
-            padding: 8px 12px;
-            font-weight: 700;
-            transition: background-color 0.3s;
-            border-radius: 4px;
-        }
-
-        .main-nav a:hover:not(.cta-button) {
-            background-color: rgba(230, 57, 70, 0.2);
-        }
-
-        /* --- Buttons --- */
-        .cta-button, .btn-primary, .btn-secondary {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: 700;
-            text-transform: uppercase;
-            transition: background-color 0.3s, transform 0.2s;
-            text-align: center;
-        }
-
-        .cta-button {
-            background-color: var(--primary-color);
-            color: var(--background-dark);
-        }
-
-        .cta-button:hover {
-            background-color: #ff6b7b;
-            transform: translateY(-2px);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            margin-top: 20px;
-        }
-
-        .btn-primary:hover {
-            background-color: #ff6b7b;
-            transform: scale(1.05);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary-color);
-            color: var(--text-light);
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .btn-secondary:hover {
-            background-color: #5590b2;
-        }
-
-        /* --- Sections --- */
-        section {
-            padding: 60px 5%;
-        }
-
-        /* Hero Section Specifics - Setting a fixed height and background image */
-        .hero-section {
-            /* Using a simple placeholder image URL for guaranteed visibility */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800/101010/808080?text=EPIC+GAME+BACKGROUND') no-repeat center center;
-            background-size: cover;
-            height: 70vh; /* This makes the section visible */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            color: #ccc;
-        }
-
-        /* Featured Games Section Specifics */
-        .featured-games {
-            text-align: center;
-            background-color: var(--card-background);
-        }
-
-        .game-cards {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: var(--background-dark);
-            padding: 25px;
-            border-radius: 10px;
-            flex: 1 1 300px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            border-top: 4px solid var(--primary-color);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card h3 {
-            margin-top: 0;
-            color: var(--secondary-color);
-        }
-
-        /* Latest News Section Specifics */
-        .latest-news {
-            background-color: var(--background-dark);
-        }
-
-        .news-item {
-            border-bottom: 1px solid #333;
-            padding: 20px 0;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-item h4 {
-            margin-bottom: 5px;
-            font-size: 1.2rem;
-            color: var(--text-light);
-        }
-
-        .news-item a {
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: #0d0d0d;
-            text-align: center;
-            padding: 20px 5%;
-            border-top: 3px solid var(--primary-color);
-        }
-
-        .social-links a {
-            margin: 0 10px;
-            color: var(--text-light);
-            font-weight: 400;
-        }
-
-        .social-links a:hover {
-            color: var(--primary-color);
-        }
-
-        /* --- Media Queries for Responsiveness --- */
-        @media (max-width: 768px) {
-            .main-header {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .main-nav ul {
-                justify-content: center;
-                margin-top: 10px;
-            }
-
-            .main-nav li {
-                margin: 0 8px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-content p {
-                font-size: 1rem;
-            }
-
-            .game-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .card {
-                width: 90%;
-                max-width: 400px;
-            }
-        }
-    </style>
+    footer{
+      margin-top:40px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+  </style>
 </head>
+
 <body>
-    <header class="main-header">
-        <div class="logo">PixelForge</div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#games">Games</a></li>
-                <li><a href="#news">News</a></li>
-                <li><a href="#community">Community</a></li>
-                <li><a href="#login" class="cta-button">Login</a></li>
-            </ul>
-        </nav>
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header>
+      <div class="brand">
+        <div class="logo">PF</div>
+        <div>
+          <div style="font-weight:700;font-size:20px">Activity 1</div>
+          <div style="font-size:12px;color:var(--muted)">Tanishq Pandey | 23BCG10062</div>
+        </div>
+      </div>
+
     </header>
 
-    <main>
-        <section class="hero-section" id="home">
-            <div class="hero-content">
-                <h1>Forge Your Legend. Join PixelForge.</h1>
-                <p>The ultimate hub for competitive news, reviews, and exclusive game content.</p>
-                <a href="https://cloud-tic-tac-toe-YOUR-ID.vercel.app/" target="_blank" class="btn-primary">Play Our Featured Game!</a>
-            </div>
-        </section>
+    <!-- STUDENT DETAILS -->
+    <div class="info-bar">
+      <strong>Student Name:</strong> Tanishq Pandey &nbsp; | &nbsp;
+      <strong>Reg No:</strong> 23BCG10062 &nbsp; | &nbsp;
+      <strong>Faculty:</strong> Dr. Vijay Birccha &nbsp; | &nbsp;
+      <strong>Subject:</strong> Gaming In Cloud &nbsp; | &nbsp;
+      <strong>Email:</strong> tanishq.23bcg10062@vitbhopal.ac.in
+    </div>
 
-        <section class="featured-games" id="games">
-            <h2>🔥 Featured Games</h2>
-            <div class="game-cards">
-                <div class="card">
-                    <h3>Cloud Tic-Tac-Toe</h3>
-                    <p>The classic paper-and-pencil game, cloud-hosted for instant play.</p>
-                    <a href="https://cloud-tic-tac-toe-YOUR-ID.vercel.app/" target="_blank" class="btn-secondary">Play Now!</a>
-                </div>
-                <div class="card">
+    <!-- MAIN FEATURED GAME -->
+    <section id="featured">
+      <div class="card">
+        <h2 style="margin-top:0">Game</h2>
+        <p style="color:var(--muted)">Ball Bounce Game</p>
+        <a class="btn" href="games/ball-bounce/">Play</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      © <span id="year"></span> Made By Tanishq Pandey
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
