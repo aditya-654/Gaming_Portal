@@ -3,178 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe - Aditya Ahuja</title>
-    
+    <title>Tic-Tac-Toe Landing Page</title>
     <style>
         body { 
             font-family: sans-serif; 
             display: flex; 
+            flex-direction: column;
             justify-content: center; 
             align-items: center; 
             min-height: 100vh; 
-            background-color: #282c34; 
+            background-color: #1a1a1a; 
             color: white; 
             margin: 0;
+            text-align: center;
         }
-        .game-container { 
-            text-align: center; 
-            background-color: #1c1f24;
-            padding: 30px;
+        .container { 
+            background-color: #282c34;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            /* Added min-width to accommodate the details */
-            min-width: 400px; 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            max-width: 500px;
+            width: 90%;
         }
         h1 { 
-            color: #61dafb; 
-            margin-top: 0;
-            margin-bottom: 10px; /* Reduced space after title */
+            color: #e63946; 
+            margin-bottom: 20px;
         }
-        /* New Style for Details Section */
         .details-box {
             background-color: #3a3f47;
             padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             border-radius: 5px;
             text-align: left;
-            font-size: 0.9em;
-            border-left: 5px solid #e63946; /* Primary color accent */
+            border-left: 5px solid #61dafb; /* Blue accent */
         }
         .details-box p {
-            margin: 3px 0;
+            margin: 5px 0;
         }
-        /* End of new styles */
-        .board { 
-            display: grid; 
-            grid-template-columns: repeat(3, 100px); 
-            grid-template-rows: repeat(3, 100px); 
-            gap: 5px; 
-            margin: 20px auto; 
-        }
-        .cell { 
-            background-color: #444; 
-            border: 2px solid #61dafb; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            font-size: 40px; 
-            cursor: pointer; 
-            user-select: none;
-            transition: background-color 0.2s;
-        }
-        .cell:hover { 
-            background-color: #555; 
-        }
-        #status { 
+        .play-button { 
+            display: inline-block;
+            padding: 15px 30px; 
             font-size: 1.2em; 
-            margin-bottom: 15px; 
-            color: #61dafb; /* Changed status text color for visibility */
-        }
-        #reset-button { 
-            padding: 10px 20px; 
-            font-size: 16px; 
-            background-color: #e63946; 
-            color: white; 
+            background-color: #61dafb; /* Blue button */
+            color: #1a1a1a; 
             border: none; 
             border-radius: 5px; 
             cursor: pointer;
-            transition: background-color 0.2s;
+            text-decoration: none; /* Important for the link */
+            font-weight: bold;
+            transition: background-color 0.2s, transform 0.1s;
         }
-        #reset-button:hover { 
-            background-color: #ff6b7b; 
+        .play-button:hover { 
+            background-color: #8be9fd; 
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Tic-Tac-Toe</h1>
+    <div class="container">
+        <h1>Welcome to Tic-Tac-Toe (Cloud Gaming Project)</h1>
         
         <div class="details-box">
-            <p><strong>Activity:</strong></p>
+            <p><strong>Activity:1</strong> </p>
             <p><strong>Subject:</strong> Gaming in Cloud</p>
             <p><strong>Name:</strong> Aditya Ahuja</p>
             <p><strong>Regn No:</strong> 23BCG10109</p>
         </div>
-        <div id="status">Player X's Turn</div>
-        <div class="board" id="board">
-            <div class="cell" data-index="0"></div>
-            <div class="cell" data-index="1"></div>
-            <div class="cell" data-index="2"></div>
-            <div class="cell" data-index="3"></div>
-            <div class="cell" data-index="4"></div>
-            <div class="cell" data-index="5"></div>
-            <div class="cell" data-index="6"></div>
-            <div class="cell" data-index="7"></div>
-            <div class="cell" data-index="8"></div>
-        </div>
-        <button id="reset-button">Reset Game</button>
+
+        <a href="game.html" class="play-button">PLAY THE GAME</a>
     </div>
-    
-    <script>
-        const board = document.getElementById('board');
-        const statusDisplay = document.getElementById('status');
-        const resetButton = document.getElementById('reset-button');
-        const cells = document.querySelectorAll('.cell');
-
-        let gameBoard = ["", "", "", "", "", "", "", "", ""];
-        let currentPlayer = "X";
-        let gameActive = true;
-
-        const winningConditions = [
-            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-            [0, 4, 8], [2, 4, 6]             // Diagonals
-        ];
-
-        function handleResultValidation() {
-            let roundWon = false;
-            for (let i = 0; i < winningConditions.length; i++) {
-                const winCondition = winningConditions[i];
-                let a = gameBoard[winCondition[0]];
-                let b = gameBoard[winCondition[1]];
-                let c = gameBoard[winCondition[2]];
-
-                if (a === '' || b === '' || c === '') {
-                    continue;
-                }
-                if (a === b && b === c) {
-                    roundWon = true;
-                    break;
-                }
-            }
-
-            if (roundWon) {
-                statusDisplay.innerHTML = `Player ${currentPlayer} Wins! 🎉`;
-                gameActive = false;
-                return;
-            }
-
-            if (!gameBoard.includes("")) {
-                statusDisplay.innerHTML = `It's a Draw! 🤝`;
-                gameActive = false;
-                return;
-            }
-
-            // Continue game
-            currentPlayer = currentPlayer === "X" ? "O" : "X";
-            statusDisplay.innerHTML = `Player ${currentPlayer}'s Turn`;
-        }
-
-        function handleCellClick(clickedCellEvent) {
-            const clickedCell = clickedCellEvent.target;
-            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-index'));
-
-            if (gameBoard[clickedCellIndex] !== "" || !gameActive) {
-                return;
-            }
-
-            gameBoard[clickedCellIndex] = currentPlayer;
-            clickedCell.innerHTML = currentPlayer;
-
-            handleResultValidation();
-        }
-
-        function handleRestartGame() {
-            gameActive = true;
-            currentPlayer = "X";
-            gameBoard = ["", "", "", "", "", "", "", "",
+</body>
+</html>
